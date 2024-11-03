@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030751a5c0e0bc040a7ecfc9135b20db, type: 3}
+  m_Name: 00_Noodle
+  m_EditorClassIdentifier: 
+  name: Noodle
+  price: 0
+  iconSprite: {fileID: 21300000, guid: b4297766249c7d046ad573f979c1f0b6, type: 3}
+  objectPrefabs:
+  - {fileID: 6654390386707777529, guid: db15a27eb76230f48b3764154fac4d52, type: 3}
+  - {fileID: 5348165913687523802, guid: 5ff924a16a97e9646b41925bac9aeebb, type: 3}
+  - {fileID: 5348165913687523802, guid: c9c110f955b315642b724a40f2132f31, type: 3}
+  - {fileID: 5348165913687523802, guid: 31a383a35c71fdb4aaa20e8b075402de, type: 3}
+  - {fileID: 5348165913687523802, guid: 8eec0156a3cb4294db1c2591fcc90d64, type: 3}
+  - {fileID: 5348165913687523802, guid: 6b4ea365f3928fe41aa39a797c45bde6, type: 3}
+  - {fileID: 5348165913687523802, guid: f644105b62cd1b644a5d5775a7992172, type: 3}
+  - {fileID: 5348165913687523802, guid: 15935bf53b16dec4689c5ec7491c64d2, type: 3}
+  spawnablePrefabs:
+  - {fileID: 6654390386707777529, guid: db15a27eb76230f48b3764154fac4d52, type: 3}
+  - {fileID: 6654390386707777529, guid: db15a27eb76230f48b3764154fac4d52, type: 3}
+  - {fileID: 6654390386707777529, guid: db15a27eb76230f48b3764154fac4d52, type: 3}
+  - {fileID: 5348165913687523802, guid: 5ff924a16a97e9646b41925bac9aeebb, type: 3}
+  - {fileID: 5348165913687523802, guid: 5ff924a16a97e9646b41925bac9aeebb, type: 3}
+  - {fileID: 5348165913687523802, guid: 5ff924a16a97e9646b41925bac9aeebb, type: 3}
+  - {fileID: 5348165913687523802, guid: c9c110f955b315642b724a40f2132f31, type: 3}
+  - {fileID: 5348165913687523802, guid: c9c110f955b315642b724a40f2132f31, type: 3}
+  - {fileID: 5348165913687523802, guid: c9c110f955b315642b724a40f2132f31, type: 3}
+  - {fileID: 5348165913687523802, guid: 31a383a35c71fdb4aaa20e8b075402de, type: 3}
+  - {fileID: 5348165913687523802, guid: 8eec0156a3cb4294db1c2591fcc90d64, type: 3}
