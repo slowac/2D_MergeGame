@@ -30,7 +30,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        onGameStateChanged += SetGameoverState;
         SetMenu();
+    }
+
+    private void OnDestroy()
+    {
+        onGameStateChanged -= SetGameoverState;
+
     }
 
     private void SetMenu()
@@ -52,13 +59,20 @@ public class GameManager : MonoBehaviour
     {
         yield return StartCoroutine(FruitManager.instance.ExplodeFruits()); // explode fruits
         SetGameState(GameState.Gameover);
-
     }
 
     public void SetGameState(GameState gameState)
     {
         this.gameState = gameState;
         onGameStateChanged?.Invoke(gameState);
+    }
+
+    public void SetGameoverState(GameState gameState)
+    {
+        if (gameState == GameState.Gameover)
+        {
+            AdsManager.instance.ShowInterstitialAd();
+        }
     }
 
     public GameState GetGameState()
