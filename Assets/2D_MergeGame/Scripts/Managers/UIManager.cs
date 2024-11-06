@@ -10,11 +10,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private RectTransform settingsPanel;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject mapPanel;
     [SerializeField] private GameObject levelMapPanel;
     [SerializeField] private GameObject dropLine;
+
+    [Header("Settings")]
+    private Vector2 openedPosition;
+    private Vector2 closedPosition;
 
     [Header("Actions")]
     public static Action onMapOpened;
@@ -33,7 +37,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //SetMenu();
+        settingsPanel.gameObject.SetActive(false);
+
+        openedPosition = Vector2.zero;
+        closedPosition = new Vector2(settingsPanel.rect.width, 0);
+
+        settingsPanel.anchoredPosition = closedPosition;
     }
 
     private void GameStateChangedCallback(GameState gameState)
@@ -59,7 +68,6 @@ public class UIManager : MonoBehaviour
         menuPanel.SetActive(true);
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
-        settingsPanel.SetActive(false);
         mapPanel.SetActive(false);
     }
 
@@ -91,11 +99,15 @@ public class UIManager : MonoBehaviour
 
     public void SettingsPanelCallback()
     {
+        settingsPanel.gameObject.SetActive(true);
+
+        LeanTween.cancel(settingsPanel);
+        LeanTween.move(settingsPanel, openedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
+
         if (GameManager.instance.IsGameState())
         {
-            PauseGame();
+            LeanTween.delayedCall(0.3f, PauseGame);
         }
-        settingsPanel.SetActive(true);
         // Disable the LineRenderer when settings panel is opened
         if (dropLine != null)
         {
@@ -105,8 +117,13 @@ public class UIManager : MonoBehaviour
 
     public void CloseSettingsPanel()
     {
-        settingsPanel.SetActive(false);
         ResumeGame();
+
+        LeanTween.cancel(settingsPanel);
+        LeanTween.move(settingsPanel, closedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
+
+        LeanTween.delayedCall(0.3f, () => settingsPanel.gameObject.SetActive(false));
+
         // Re-enable the LineRenderer when settings panel is closed
         if (dropLine != null)
         {
@@ -126,7 +143,7 @@ public class UIManager : MonoBehaviour
 
     public bool IsSettingsPanelActive()
     {
-        return settingsPanel.activeSelf; // Check if settings panel is active
+        return settingsPanel.gameObject.activeSelf; // Check if settings panel is active
     }
 
     public void ShopButtonCallback()
