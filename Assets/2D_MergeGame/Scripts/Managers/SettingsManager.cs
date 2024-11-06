@@ -4,11 +4,14 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class SettingsManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private GameObject resetProgressPrompt;
+    [SerializeField] private GameObject mainMenuPrompt;
+    [SerializeField] private GameObject mainMenuButton;
     [SerializeField] private Slider pushMagnitudeSlider;
     [SerializeField] private Toggle sfxToggle;
 
@@ -21,9 +24,16 @@ public class SettingsManager : MonoBehaviour
     private const string sfxActiveKey = "sfxActive";
     private bool canSave;   
 
-    private void Awake()
+    private void OnEnable()
     {
+        GameManager.onGameStateChanged += MainMenuButtonCheck;
+
         LoadData();        
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameStateChanged -= MainMenuButtonCheck;
     }
 
     IEnumerator Start()
@@ -58,9 +68,31 @@ public class SettingsManager : MonoBehaviour
         resetProgressPrompt.SetActive(false);
     }
 
+    private void MainMenuButtonCheck(GameState gameState)
+    {
+        if (gameState == GameState.Game)
+        {
+            mainMenuButton.SetActive(true);
+        }
+        else
+        {
+            mainMenuButton.SetActive(false);
+        }
+    }
+
+    public void MainMenuButtonCallback()
+    {
+        mainMenuPrompt.SetActive(true);
+    }
+
     public void MainMenuYes()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void MainMenuNo()
+    {
+        mainMenuPrompt.SetActive(false);
     }
 
     public void SliderValueChangedCallback()
@@ -77,8 +109,8 @@ public class SettingsManager : MonoBehaviour
 
     private void LoadData()
     {
-        pushMagnitudeSlider.value = PlayerPrefs.GetFloat(lastPushMagnitudeKey);
-        sfxToggle.isOn = PlayerPrefs.GetInt(sfxActiveKey) == 1;
+        pushMagnitudeSlider.value = PlayerPrefs.GetFloat(lastPushMagnitudeKey, 0.25f);
+        sfxToggle.isOn = PlayerPrefs.GetInt(sfxActiveKey, 1) == 1;
     }
 
     private void SaveData()
