@@ -7,6 +7,7 @@ public class Fruit : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     [Header("Data")]
     [SerializeField] private FruitType fruitType;
@@ -19,14 +20,50 @@ public class Fruit : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private ParticleSystem mergeParticles;
 
+    [Header("Color Data")]
+    [SerializeField] private List<FruitColorDataSO> colorDataList; // Renk verilerini tutan liste
+    private FruitColorDataSO currentColorData;  // Þu anda kullanýlacak renk verisi
+
     private void Start()
     {
         Invoke("AllowMerge", .25f);
+
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = true;
+            // Trail efekti baþlat
+            SetTrailColor();
+        }
     }
 
     private void AllowMerge()
     {
         canBeMerged = true;
+    }
+
+    private void SetTrailColor()
+    {
+        // FruitType'a göre doðru renk verisini alýyoruz
+        currentColorData = colorDataList.Find(data => data.fruitType == fruitType);
+
+        if (currentColorData != null)
+        {
+            // Gradient oluþturuluyor
+            Gradient gradient = new Gradient();
+            gradient.colorKeys = new GradientColorKey[]
+            {
+                new GradientColorKey(currentColorData.startColor, 0f), // Baþlangýç rengi
+                new GradientColorKey(currentColorData.endColor, 1f)    // Bitiþ rengi
+            };
+            gradient.alphaKeys = new GradientAlphaKey[]
+            {
+                new GradientAlphaKey(1f, 0f), // Baþlangýçta tamamen opak
+                new GradientAlphaKey(1f, 1f)  // Bitiþte tamamen opak
+            };
+
+            // TrailRenderer'ýn colorGradient özelliðine bu gradient'i atýyoruz
+            trailRenderer.colorGradient = gradient;
+        }
     }
 
     public void MoveTo(Vector2 targetPosition)
@@ -73,6 +110,16 @@ public class Fruit : MonoBehaviour
 
             onCollisionWithFruit?.Invoke(this, otherFruit);
         }
+
+        if (trailRenderer != null)
+        {
+            Invoke("DisableTrail", 0.25f);
+        }
+    }
+
+    private void DisableTrail()
+    {
+        trailRenderer.enabled = false;
     }
 
     public void Merge()

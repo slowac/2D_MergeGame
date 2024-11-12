@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2D_MergeGame/Scenes/GameScene 1.unity
     guid: 147e4c2c0a04a8d469f9a41cba75c60e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 6763dc8584998e1499880674901ef8ed, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 8cb2b2854c92afa4ab59bafdaddf17f3, type: 2}

@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Localization Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Localization
+  m_TableCollectionNameGuidString: 5730656bd1d56d44a8a8c41dbc75ceea
+  m_Entries:
+  - m_Id: 29249908736
+    m_Key: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323232870400
+    m_Key: Best Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 576770158592
+    m_Key: Blast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718730571776
+    m_Key: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788477652992
+    m_Key: Next_Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1036524597248
+    m_Key: SFX_Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155131125760
+    m_Key: Push Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1326753656832
+    m_Key: Reset_Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1460732309504
+    m_Key: MenuLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1585978421248
+    m_Key: '[RESET_PROGRESS_PROMPT]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1789205032960
+    m_Key: Yes_Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1841684164608
+    m_Key: No_Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1993882873856
+    m_Key: '[MAIN_MENU_PROMPT]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2418363215872
+    m_Key: ShopLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2534839037952
+    m_Key: RecipeLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2599544565760
+    m_Key: PurchaseLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2774673534976
+    m_Key: TutorialLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3008178827264
+    m_Key: Tutorial_Welcome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3136465809408
+    m_Key: Tutorial_Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3345463783424
+    m_Key: Tutorial_Blast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3633218203648
+    m_Key: Tutorial_Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3855705059328
+    m_Key: Tutorial_PushForce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4250309373952
+    m_Key: Tutorial_DontShow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4490034819072
+    m_Key: Tutorial_Close
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 716530005048557592
+  references:
+    version: 2
+    RefIds:
+    - rid: 716530005048557592
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1731353173468

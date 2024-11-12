@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030751a5c0e0bc040a7ecfc9135b20db, type: 3}
+  m_Name: 01_Balls
+  m_EditorClassIdentifier: 
+  name: Balls
+  price: 500
+  iconSprite: {fileID: 21300000, guid: c522742c5a3278b4e859a26a9c13b248, type: 3}
+  objectPrefabs:
+  - {fileID: 7519163938651069258, guid: 4399272eea87a754bae95308d10818f3, type: 3}
+  - {fileID: 7519163938651069258, guid: 3b9237c634c2b514db2c12654ba7394c, type: 3}
+  - {fileID: 7519163938651069258, guid: ca32e0023c37e004ca9cd80c2c9e301f, type: 3}
+  - {fileID: 7519163938651069258, guid: 02816bb185be55547980ed7df52e5f07, type: 3}
+  - {fileID: 7519163938651069258, guid: ef97cb51a9ebfc6498ba3a2c7013557d, type: 3}
+  - {fileID: 7519163938651069258, guid: f68150faedfb23749a46096cb13fdd4c, type: 3}
+  - {fileID: 7519163938651069258, guid: 5bb1daf4f5bd04b4291241d6847598ec, type: 3}
+  - {fileID: 7519163938651069258, guid: 8be7255b9e6587a408eef31afaffbee3, type: 3}
+  spawnablePrefabs:
+  - {fileID: 7519163938651069258, guid: 4399272eea87a754bae95308d10818f3, type: 3}
+  - {fileID: 7519163938651069258, guid: 4399272eea87a754bae95308d10818f3, type: 3}
+  - {fileID: 7519163938651069258, guid: 4399272eea87a754bae95308d10818f3, type: 3}
+  - {fileID: 7519163938651069258, guid: 3b9237c634c2b514db2c12654ba7394c, type: 3}
+  - {fileID: 7519163938651069258, guid: 3b9237c634c2b514db2c12654ba7394c, type: 3}
+  - {fileID: 7519163938651069258, guid: 3b9237c634c2b514db2c12654ba7394c, type: 3}
+  - {fileID: 7519163938651069258, guid: ca32e0023c37e004ca9cd80c2c9e301f, type: 3}
+  - {fileID: 7519163938651069258, guid: ca32e0023c37e004ca9cd80c2c9e301f, type: 3}
+  - {fileID: 7519163938651069258, guid: ca32e0023c37e004ca9cd80c2c9e301f, type: 3}
+  - {fileID: 7519163938651069258, guid: 02816bb185be55547980ed7df52e5f07, type: 3}
+  - {fileID: 7519163938651069258, guid: ef97cb51a9ebfc6498ba3a2c7013557d, type: 3}

@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Localization_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 5730656bd1d56d44a8a8c41dbc75ceea, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 29249908736
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323232870400
+    m_Localized: Best Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 576770158592
+    m_Localized: BLAST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718730571776
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788477652992
+    m_Localized: NEXT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1036524597248
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155131125760
+    m_Localized: Push Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1326753656832
+    m_Localized: Reset Progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1460732309504
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1585978421248
+    m_Localized: Do you really want to reset your progress?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1789205032960
+    m_Localized: YES!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1841684164608
+    m_Localized: NOPE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1993882873856
+    m_Localized: Do you really want to return main menu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2418363215872
+    m_Localized: SHOP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2534839037952
+    m_Localized: RECIPES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2599544565760
+    m_Localized: PURCHASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2774673534976
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3008178827264
+    m_Localized: 'Welcome to the Merge the Culture!
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3136465809408
+    m_Localized: I will give you some tips so that you can fully enjoy the game.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3345463783424
+    m_Localized: By pressing this button located at the bottom left of the game screen,
+      you can make some annoying food explode!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3633218203648
+    m_Localized: If you confirm the "ResetProgress" process, your game settings will
+      be reset and you will step into a clean slate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3855705059328
+    m_Localized: Tweak this setting to your heart's content to send your food flying
+      like crazy!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4250309373952
+    m_Localized: Don't Show Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4490034819072
+    m_Localized: CLOSE
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

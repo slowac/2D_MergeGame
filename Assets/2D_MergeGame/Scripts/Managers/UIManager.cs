@@ -11,14 +11,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private RectTransform settingsPanel;
-    [SerializeField] private GameObject shopPanel;
+    [SerializeField] private RectTransform shopPanel;
     [SerializeField] private GameObject mapPanel;
     [SerializeField] private GameObject levelMapPanel;
     [SerializeField] private GameObject dropLine;
 
     [Header("Settings")]
-    private Vector2 openedPosition;
-    private Vector2 closedPosition;
+    private Vector2 settingsPanelOpenedPosition;
+    private Vector2 settingsPanelClosedPosition;
+    private Vector2 shopPanelOpenedPosition;
+    private Vector2 shopPanelClosedPosition;
 
     [Header("Actions")]
     public static Action onMapOpened;
@@ -37,12 +39,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        settingsPanel.gameObject.SetActive(false);
-
-        openedPosition = Vector2.zero;
-        closedPosition = new Vector2(settingsPanel.rect.width, 0);
-
-        settingsPanel.anchoredPosition = closedPosition;
+        SettingsPanelInitialize();
+        ShopPanelInitialize();
     }
 
     private void GameStateChangedCallback(GameState gameState)
@@ -97,18 +95,28 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    private void SettingsPanelInitialize()
+    {
+        settingsPanel.gameObject.SetActive(false);
+
+        settingsPanelOpenedPosition = Vector2.zero;
+        settingsPanelClosedPosition = new Vector2(-settingsPanel.rect.width, 0);
+
+        settingsPanel.anchoredPosition = settingsPanelClosedPosition;
+    }
+
     public void SettingsPanelCallback()
     {
         settingsPanel.gameObject.SetActive(true);
 
         LeanTween.cancel(settingsPanel);
-        LeanTween.move(settingsPanel, openedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
+        LeanTween.move(settingsPanel, settingsPanelOpenedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
 
         if (GameManager.instance.IsGameState())
         {
             LeanTween.delayedCall(0.3f, PauseGame);
         }
-        // Disable the LineRenderer when settings panel is opened
+
         if (dropLine != null)
         {
             dropLine.SetActive(false);
@@ -120,7 +128,7 @@ public class UIManager : MonoBehaviour
         ResumeGame();
 
         LeanTween.cancel(settingsPanel);
-        LeanTween.move(settingsPanel, closedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
+        LeanTween.move(settingsPanel, settingsPanelClosedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
 
         LeanTween.delayedCall(0.3f, () => settingsPanel.gameObject.SetActive(false));
 
@@ -146,14 +154,30 @@ public class UIManager : MonoBehaviour
         return settingsPanel.gameObject.activeSelf; // Check if settings panel is active
     }
 
+    private void ShopPanelInitialize()
+    {
+        shopPanel.gameObject.SetActive(false);
+
+        shopPanelOpenedPosition = Vector2.zero;
+        shopPanelClosedPosition = new Vector2(shopPanel.rect.width, 0);
+
+        shopPanel.anchoredPosition = shopPanelClosedPosition;
+    }
+
     public void ShopButtonCallback()
     {
-        shopPanel.SetActive(true);
+        shopPanel.gameObject.SetActive(true);
+
+        LeanTween.cancel(shopPanel);
+        LeanTween.move(shopPanel, shopPanelOpenedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
     }
 
     public void CloseShopPanel()
     {
-        shopPanel.SetActive(false);
+        LeanTween.cancel(shopPanel);
+        LeanTween.move(shopPanel, shopPanelClosedPosition, 0.3f).setEase(LeanTweenType.easeInOutSine);
+
+        LeanTween.delayedCall(0.3f, () => shopPanel.gameObject.SetActive(false));
     }
 
     public void OpenMap()

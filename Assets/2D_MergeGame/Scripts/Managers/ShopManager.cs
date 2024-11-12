@@ -23,6 +23,10 @@ public class ShopManager : MonoBehaviour
     [Header("Variables")]
     private int lastSelectedSkin;
 
+    [Header("Scroll View")]
+    [SerializeField] private ScrollRect skinScrollView;  // ScrollRect
+    [SerializeField] private RectTransform content;      // Content kýsmý
+
     [Header("Actions")]
     public static Action<SkinDataSO> onSkinSelected;
 
@@ -35,7 +39,13 @@ public class ShopManager : MonoBehaviour
     {
         Initialize();
         LoadData();
+
+        if (skinButtonsParent.childCount > 0)
+        {
+            SkinButtonClickedCallback(0, false); // Ýlk ürünü seçiyoruz ve ortalýyoruz
+        }
     }
+
 
     public void PurchaseButtonCallback()
     {
@@ -62,14 +72,14 @@ public class ShopManager : MonoBehaviour
         {
             SkinButton skinButtonInstance = Instantiate(skinButtonPrefab, skinButtonsParent);
 
-            skinButtonInstance.Configure(skinDataSOs[i].GetObjectPrefabs()[0].GetSprite());
+            skinButtonInstance.Configure(skinDataSOs[i].GetIconSprite());
 
             //if(i == 0)
             //{
             //    skinButtonInstance.Select();
             //}
 
-            int j = i;
+            int j = i; //button index
             skinButtonInstance.GetButton().onClick.AddListener(() => SkinButtonClickedCallback(j));
         }
     }
@@ -78,10 +88,10 @@ public class ShopManager : MonoBehaviour
     {
         lastSelectedSkin = skinButtonIndex;
 
+        // Seçilen butonu vurgulama
         for (int i = 0; i < skinButtonsParent.childCount; i++)
         {
             SkinButton currentSkinButton = skinButtonsParent.GetChild(i).GetComponent<SkinButton>();
-
 
             if (i == skinButtonIndex)
             {
@@ -92,6 +102,26 @@ public class ShopManager : MonoBehaviour
                 currentSkinButton.Unselect();
             }
         }
+
+        // Seçilen butonun RectTransform'ýný al
+        RectTransform selectedButtonRectTransform = skinButtonsParent.GetChild(skinButtonIndex).GetComponent<RectTransform>();
+
+        // Content'in geniþliðini ve butonun geniþliðini al
+        float contentWidth = content.rect.width;
+        float buttonWidth = selectedButtonRectTransform.rect.width;
+
+        // Content'in pozisyonunu ve seçilen butonun pozisyonunu hesapla
+        float buttonPosX = selectedButtonRectTransform.localPosition.x;
+
+        // Seçilen butonun yatayda ortalanabilmesi için kaydýrma pozisyonunu hesapla
+        float targetPosX = buttonPosX - (contentWidth / 2) + (buttonWidth / 2);
+
+        // Horizontal scroll için kaydýrma oranýný hesapla
+        float normalizedPosition = Mathf.Clamp01(targetPosX / (content.rect.width - contentWidth));
+
+        // Coroutine ile kaydýrma iþlemini yap
+        StartCoroutine(SmoothScroll(normalizedPosition));
+
         if (IsSkinUnlocked(skinButtonIndex))
         {
             onSkinSelected?.Invoke(skinDataSOs[skinButtonIndex]);
@@ -103,8 +133,24 @@ public class ShopManager : MonoBehaviour
         }
 
         ManagePurhcaseButtonVisibility(skinButtonIndex);
-
         UpdateSkinLabel(skinButtonIndex);
+    }
+
+    private IEnumerator SmoothScroll(float targetNormalizedPosition)
+    {
+        float startPos = skinScrollView.horizontalNormalizedPosition;
+        float elapsedTime = 0f;
+        float duration = 0.25f; // Lerp süresi, isteðe göre ayarlayabilirsiniz
+
+        while (elapsedTime < duration)
+        {
+            skinScrollView.horizontalNormalizedPosition = Mathf.Lerp(startPos, targetNormalizedPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Son pozisyonu ayarlama
+        skinScrollView.horizontalNormalizedPosition = targetNormalizedPosition;
     }
 
     private void UpdateSkinLabel(int skinButtonIndex)

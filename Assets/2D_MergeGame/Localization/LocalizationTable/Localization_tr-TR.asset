@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Localization_tr-TR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr-TR
+  m_SharedData: {fileID: 11400000, guid: 5730656bd1d56d44a8a8c41dbc75ceea, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 29249908736
+    m_Localized: Oyna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323232870400
+    m_Localized: Yuksek Skor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 576770158592
+    m_Localized: BOM!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 718730571776
+    m_Localized: Oyun Bitti!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788477652992
+    m_Localized: DEVAM ET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1036524597248
+    m_Localized: SES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1155131125760
+    m_Localized: Birlesme Gucu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1326753656832
+    m_Localized: SIFIRLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1460732309504
+    m_Localized: Ana Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1585978421248
+    m_Localized: Ilerlemenizi gercekten sifirlamak istiyor musunuz?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1789205032960
+    m_Localized: EVET!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1841684164608
+    m_Localized: HAYIR!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1993882873856
+    m_Localized: Gercekten ana menuye donmek istiyor musunuz?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2418363215872
+    m_Localized: MARKET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2534839037952
+    m_Localized: TARIFLER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2599544565760
+    m_Localized: SATIN AL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2774673534976
+    m_Localized: OGRETICI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3008178827264
+    m_Localized: Merge the Culture'a hos geldin!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3136465809408
+    m_Localized: Oyunun tadini tam anlamiyla cikarabilmeniz icin size birkac ipucu
+      verecegim.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3345463783424
+    m_Localized: Oyun ekraninin sol alt kisminda bulunan bu butona basarak sinir
+      bozucu yiyeceklerin patlamasini saglayabilirsiniz!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3633218203648
+    m_Localized: '"SIFIRLA" islemini onayladiginiz takdirde oyun ayarlariniz sifirlanacak
+      ve tertemiz bir sayfa acacaksiniz.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3855705059328
+    m_Localized: Bu ayari istediginiz gibi ayarlayin ve yiyeceklerinizin cilginlar
+      gibi ucmasini saglayin!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4250309373952
+    m_Localized: Tekrar Gosterme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4490034819072
+    m_Localized: KAPAT
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

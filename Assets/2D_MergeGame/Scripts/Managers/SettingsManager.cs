@@ -12,6 +12,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private GameObject resetProgressPrompt;
     [SerializeField] private GameObject mainMenuPrompt;
     [SerializeField] private GameObject mainMenuButton;
+    [SerializeField] private GameObject dropdownMenu;
     [SerializeField] private Slider pushMagnitudeSlider;
     [SerializeField] private Toggle sfxToggle;
 
@@ -27,6 +28,7 @@ public class SettingsManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onGameStateChanged += MainMenuButtonCheck;
+        GameManager.onGameStateChanged += DropdownMenuCheck;
 
         LoadData();        
     }
@@ -34,6 +36,7 @@ public class SettingsManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.onGameStateChanged -= MainMenuButtonCheck;
+        GameManager.onGameStateChanged -= DropdownMenuCheck;
     }
 
     IEnumerator Start()
@@ -68,6 +71,8 @@ public class SettingsManager : MonoBehaviour
         resetProgressPrompt.SetActive(false);
     }
 
+
+
     private void MainMenuButtonCheck(GameState gameState)
     {
         if (gameState == GameState.Game)
@@ -78,6 +83,19 @@ public class SettingsManager : MonoBehaviour
         {
             mainMenuButton.SetActive(false);
         }
+    }
+
+    private void DropdownMenuCheck(GameState gameState)
+    {
+        if(gameState == GameState.Menu) 
+        {
+            dropdownMenu.SetActive(true);
+        }
+        else
+        {
+            dropdownMenu.SetActive(false);
+        }
+
     }
 
     public void MainMenuButtonCallback()
