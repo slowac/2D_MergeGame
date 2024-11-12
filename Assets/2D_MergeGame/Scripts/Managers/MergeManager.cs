@@ -48,6 +48,11 @@ public class MergeManager : MonoBehaviour
         StartCoroutine(ResetLastSenderCoroutine());
 
         onMergeProcessed?.Invoke(mergeFruitType, fruitSpawnPos);
+
+        if (mergeFruitType == FruitType.NoodlePlate + 1)
+        {
+            ParticleManager.Instance.PlayMergeFinalParticleEffect(fruitSpawnPos);
+        }
     }
 
     IEnumerator ResetLastSenderCoroutine()

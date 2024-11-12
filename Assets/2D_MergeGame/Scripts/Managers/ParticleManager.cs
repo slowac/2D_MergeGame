@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
+    public static ParticleManager Instance { get; private set; }
+
     [Header("Elements")]
     [SerializeField] private GameObject bubbleParticle;
+    public ParticleSystem mergeFinalParticleEffect;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnEnable()
     {
@@ -19,13 +34,12 @@ public class ParticleManager : MonoBehaviour
 
     private void HandleGameStateChanged(GameState newState)
     {
-        if (newState == GameState.Game)
-        {
-            bubbleParticle.SetActive(true);
-        }
-        else
-        {
-            bubbleParticle.SetActive(false);
-        }
+        bubbleParticle.SetActive(newState == GameState.Game);
+    }
+
+    public void PlayMergeFinalParticleEffect(Vector2 position)
+    {
+        mergeFinalParticleEffect.transform.position = position;
+        mergeFinalParticleEffect.Play();
     }
 }

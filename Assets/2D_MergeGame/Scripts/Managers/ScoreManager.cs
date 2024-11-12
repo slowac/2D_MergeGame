@@ -6,6 +6,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
+    public ParticleManager particleManager;
 
     [Header("Elements")]
     [SerializeField] private TextMeshProUGUI gameScoreText;
@@ -73,8 +74,19 @@ public class ScoreManager : MonoBehaviour
     private void MergeProcessedCallback(FruitType fruitType, Vector2 unused_vector2)
     {
         int scoreToAdd = (int)fruitType;
-        AddScore((int)(scoreToAdd * scoreMultiplier));
+        //AddScore((int)(scoreToAdd * scoreMultiplier));
+
+        if (fruitType == FruitType.NoodlePlate + 1)
+        {
+            Debug.LogError("Plates are merged!");
+            AddScore(scoreToAdd * 10 * (int)scoreMultiplier);
+        }
+        else
+        {
+            AddScore(scoreToAdd * (int)scoreMultiplier);
+        }
     }
+
 
     // new addscore fanc.
     public void AddScore(int amount)

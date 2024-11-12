@@ -10,9 +10,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource mergeSource;
     [SerializeField] private AudioSource backgroundMusicSource;
     [SerializeField] private AudioSource boilingSource;
+    [SerializeField] private AudioSource mergePlatesSource;
 
     [Header("SFX")]
     [SerializeField] private AudioClip[] mergeClips;
+    [SerializeField] private AudioClip mergePlatesClip;
 
     [Header("Music")]
     [SerializeField] private AudioClip backgroundMusicClip;
@@ -44,6 +46,11 @@ public class AudioManager : MonoBehaviour
     private void MergeProcessedCallback(FruitType fruitType, Vector2 mergePos)
     {
         PlayMergeSound();
+
+        if (fruitType == FruitType.NoodlePlate + 1)
+        {
+            PlayMergePlatesSound();
+        }
     }
 
     public void PlayMergeSound()
@@ -86,5 +93,12 @@ public class AudioManager : MonoBehaviour
         boilingSource.clip = boilingSoundClip;
         boilingSource.loop = true;
         boilingSource.Play();
+    }
+
+    private void PlayMergePlatesSound()
+    {
+        mergePlatesSource.clip = mergePlatesClip;
+        mergePlatesSource.loop = false;
+        mergePlatesSource.Play();
     }
 }
