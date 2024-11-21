@@ -9,6 +9,7 @@ public class SkinDataSO : ScriptableObject
     [SerializeField] private new string name;
     [SerializeField] private int price;
     [SerializeField] private Sprite iconSprite;
+    [SerializeField] private Sprite flagSprite;
 
     [Header("Data")]
     [SerializeField] private Fruit[] objectPrefabs;
@@ -27,6 +28,11 @@ public class SkinDataSO : ScriptableObject
     public Sprite GetIconSprite()
     {
         return iconSprite;
+    }
+
+    public Sprite GetFlagSprite()
+    {
+        return flagSprite;
     }
 
     public Fruit[] GetObjectPrefabs()

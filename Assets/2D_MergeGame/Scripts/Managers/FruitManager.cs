@@ -36,6 +36,8 @@ public class FruitManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private LineRendererFade lineRendererFade;
+
     private void Awake()
     {
         if (instance == null)
@@ -89,7 +91,6 @@ public class FruitManager : MonoBehaviour
         while (fruits.Count > 0)
         {
             Fruit fruitToDestroy = fruits[0];
-
 
             ScoreManager.instance.AddScore(gameOverExplodeScore); 
             CoinManager.instance.AddCoins(gameOverExplodeCoin);
@@ -255,7 +256,7 @@ public class FruitManager : MonoBehaviour
     private void PlaceLineAtClickedPosition()
     {
         fruitDropLine.SetPosition(0, GetSpawnPosition());
-        fruitDropLine.SetPosition(1, GetSpawnPosition() + Vector2.down * 6.5f);
+        fruitDropLine.SetPosition(1, GetSpawnPosition() + Vector2.down * 5f);
     }
 
     private void HideLine()
@@ -266,6 +267,7 @@ public class FruitManager : MonoBehaviour
     private void DisplayLine()
     {
         fruitDropLine.enabled = true;
+        lineRendererFade.ApplyFade();
     }
 
     private void StartControlTimer()

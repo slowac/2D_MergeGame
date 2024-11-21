@@ -37,10 +37,20 @@ public class CoinManager : MonoBehaviour
         MergeManager.onMergeProcessed -= MergeProcessedCallback;
     }
 
-    private void MergeProcessedCallback(FruitType fruitype, Vector2 fruitSpawnPos)
+    private void MergeProcessedCallback(FruitType fruitType, Vector2 fruitSpawnPos)
     {
-        int coinsToAdd = ((int)fruitype);
-        AddCoins(coinsToAdd);
+        int coinsToAdd = ((int)fruitType);
+        //AddCoins(coinsToAdd);
+
+        if (fruitType == FruitType.NoodlePlate + 1)
+        {
+            Debug.LogError("Plates are merged and gained" + coinsToAdd +  "coin!");
+            AddCoins(coinsToAdd * 10);
+        }
+        else
+        {
+            AddCoins(coinsToAdd);
+        }
     }
 
     public void AddCoins(int amout) 
@@ -72,7 +82,7 @@ public class CoinManager : MonoBehaviour
     
     private void LoadData()
     {
-        coins = PlayerPrefs.GetInt(coinsKey);
+        coins = PlayerPrefs.GetInt(coinsKey, 10000);
     }
 
     private void SaveData()

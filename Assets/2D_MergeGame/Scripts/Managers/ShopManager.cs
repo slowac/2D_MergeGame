@@ -25,7 +25,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("Scroll View")]
     [SerializeField] private ScrollRect skinScrollView;  // ScrollRect
-    [SerializeField] private RectTransform content;      // Content kýsmý
+    [SerializeField] private RectTransform content;      // Content
 
     [Header("Actions")]
     public static Action<SkinDataSO> onSkinSelected;
@@ -42,9 +42,10 @@ public class ShopManager : MonoBehaviour
 
         if (skinButtonsParent.childCount > 0)
         {
-            SkinButtonClickedCallback(0, false); // Ýlk ürünü seçiyoruz ve ortalýyoruz
+            SkinButtonClickedCallback(lastSelectedSkin, false); // select the first product and center it
         }
     }
+
 
 
     public void PurchaseButtonCallback()
@@ -72,7 +73,10 @@ public class ShopManager : MonoBehaviour
         {
             SkinButton skinButtonInstance = Instantiate(skinButtonPrefab, skinButtonsParent);
 
-            skinButtonInstance.Configure(skinDataSOs[i].GetIconSprite());
+            //BURASI KODUN ESKÝ HALÝ
+            //skinButtonInstance.Configure(skinDataSOs[i].GetIconSprite());
+
+            skinButtonInstance.Configure(skinDataSOs[i].GetIconSprite(), skinDataSOs[i].GetFlagSprite());
 
             //if(i == 0)
             //{
@@ -103,24 +107,8 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        // Seçilen butonun RectTransform'ýný al
-        RectTransform selectedButtonRectTransform = skinButtonsParent.GetChild(skinButtonIndex).GetComponent<RectTransform>();
-
-        // Content'in geniþliðini ve butonun geniþliðini al
-        float contentWidth = content.rect.width;
-        float buttonWidth = selectedButtonRectTransform.rect.width;
-
-        // Content'in pozisyonunu ve seçilen butonun pozisyonunu hesapla
-        float buttonPosX = selectedButtonRectTransform.localPosition.x;
-
-        // Seçilen butonun yatayda ortalanabilmesi için kaydýrma pozisyonunu hesapla
-        float targetPosX = buttonPosX - (contentWidth / 2) + (buttonWidth / 2);
-
-        // Horizontal scroll için kaydýrma oranýný hesapla
-        float normalizedPosition = Mathf.Clamp01(targetPosX / (content.rect.width - contentWidth));
-
-        // Coroutine ile kaydýrma iþlemini yap
-        StartCoroutine(SmoothScroll(normalizedPosition));
+        // Smooth scroll kullanarak ortala
+        StartCoroutine(SmoothScroll(skinButtonIndex));
 
         if (IsSkinUnlocked(skinButtonIndex))
         {
@@ -136,21 +124,23 @@ public class ShopManager : MonoBehaviour
         UpdateSkinLabel(skinButtonIndex);
     }
 
-    private IEnumerator SmoothScroll(float targetNormalizedPosition)
+    private IEnumerator SmoothScroll(int skinButtonIndex)
     {
-        float startPos = skinScrollView.horizontalNormalizedPosition;
-        float elapsedTime = 0f;
-        float duration = 0.25f; // Lerp süresi, isteðe göre ayarlayabilirsiniz
+        float totalItems = skinButtonsParent.childCount;
+        float targetPosition = Mathf.Clamp01((float)skinButtonIndex / (totalItems - 1));
+        float startPosition = skinScrollView.horizontalNormalizedPosition;
+        float duration = 0.25f; // Kaydýrmanýn süresi
+        float elapsed = 0f;
 
-        while (elapsedTime < duration)
+        while (elapsed < duration)
         {
-            skinScrollView.horizontalNormalizedPosition = Mathf.Lerp(startPos, targetNormalizedPosition, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
+            elapsed += Time.deltaTime;
+            skinScrollView.horizontalNormalizedPosition = Mathf.Lerp(startPosition, targetPosition, elapsed / duration);
             yield return null;
         }
 
-        // Son pozisyonu ayarlama
-        skinScrollView.horizontalNormalizedPosition = targetNormalizedPosition;
+        // Hedef pozisyona tam olarak ulaþ
+        skinScrollView.horizontalNormalizedPosition = targetPosition;
     }
 
     private void UpdateSkinLabel(int skinButtonIndex)
