@@ -118,6 +118,18 @@ MonoBehaviour:
     m_Localized: KAPAT
     m_Metadata:
       m_Items: []
+  - m_Id: 5629030324645888
+    m_Localized: Gelecek guncellemelerde farkli zorluk seviyelerinde haritalar eklenecek.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629292296679424
+    m_Localized: Gunluk odullu reklam limitinize ulastiniz!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629473037627392
+    m_Localized: Anladim!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

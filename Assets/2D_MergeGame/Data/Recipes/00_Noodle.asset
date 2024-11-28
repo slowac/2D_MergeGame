@@ -15,6 +15,15 @@ MonoBehaviour:
   name: Noodle
   price: 0
   iconSprite: {fileID: 21300000, guid: b4297766249c7d046ad573f979c1f0b6, type: 3}
+  flagSprite: {fileID: 21300000, guid: 97333f2173ce1ac4490178306b303a8e, type: 3}
+  ingredients:
+  - Mushroom
+  - Egg
+  - Carrot
+  - Onion
+  - Red Pepper
+  - Brocoli
+  - Noodle
   objectPrefabs:
   - {fileID: 6654390386707777529, guid: db15a27eb76230f48b3764154fac4d52, type: 3}
   - {fileID: 5348165913687523802, guid: 5ff924a16a97e9646b41925bac9aeebb, type: 3}

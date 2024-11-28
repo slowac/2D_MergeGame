@@ -11,6 +11,9 @@ public class SkinDataSO : ScriptableObject
     [SerializeField] private Sprite iconSprite;
     [SerializeField] private Sprite flagSprite;
 
+    [Header("Ingredients Data")]
+    [SerializeField] private List<string> ingredients;
+
     [Header("Data")]
     [SerializeField] private Fruit[] objectPrefabs;
     [SerializeField] private Fruit[] spawnablePrefabs;
@@ -33,6 +36,11 @@ public class SkinDataSO : ScriptableObject
     public Sprite GetFlagSprite()
     {
         return flagSprite;
+    }
+
+    public List<string> GetIngredients()
+    {
+        return ingredients;
     }
 
     public Fruit[] GetObjectPrefabs()

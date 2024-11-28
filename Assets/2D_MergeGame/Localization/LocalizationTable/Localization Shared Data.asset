@@ -111,6 +111,18 @@ MonoBehaviour:
     m_Key: Tutorial_Close
     m_Metadata:
       m_Items: []
+  - m_Id: 5629030324645888
+    m_Key: DebugText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629292296679424
+    m_Key: RewardLimitLabel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629473037627392
+    m_Key: UnderstoodText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

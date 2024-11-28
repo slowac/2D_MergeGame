@@ -19,5 +19,6 @@ public enum GameState
 {
     Menu,
     Game,
-    Gameover
+    Gameover,
+    LevelCompleted
 }

@@ -44,7 +44,7 @@ public class CoinManager : MonoBehaviour
 
         if (fruitType == FruitType.NoodlePlate + 1)
         {
-            Debug.LogError("Plates are merged and gained" + coinsToAdd +  "coin!");
+            Debug.LogError("Plates are merged and gained" + coinsToAdd +  " coin!");
             AddCoins(coinsToAdd * 10);
         }
         else
@@ -82,7 +82,7 @@ public class CoinManager : MonoBehaviour
     
     private void LoadData()
     {
-        coins = PlayerPrefs.GetInt(coinsKey, 10000);
+        coins = PlayerPrefs.GetInt(coinsKey );
     }
 
     private void SaveData()

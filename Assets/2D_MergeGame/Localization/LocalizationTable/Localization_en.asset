@@ -119,6 +119,18 @@ MonoBehaviour:
     m_Localized: CLOSE
     m_Metadata:
       m_Items: []
+  - m_Id: 5629030324645888
+    m_Localized: Maps of different difficulties will be added in future updates.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629292296679424
+    m_Localized: You have reached your daily rewarded ad limit!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629473037627392
+    m_Localized: Understood!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

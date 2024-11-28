@@ -45,9 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 690475859
     locked: 0
-  - name: FruitBack
+  - name: RecipeBack
     uniqueID: 4162166889
     locked: 0
-  - name: FruitFront
+  - name: RecipeFront
     uniqueID: 1471545967
+    locked: 0
+  - name: UI
+    uniqueID: 2906960267
     locked: 0

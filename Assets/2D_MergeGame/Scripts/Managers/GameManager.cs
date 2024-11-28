@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         onGameStateChanged += SetGameoverState;
+        onGameStateChanged += SetLevelCompletedState;
         SetMenu();
     }
 
@@ -56,10 +57,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(HandleGameOver());
     }
 
+    private void SetLevelCompleted()
+    {
+        StartCoroutine(HandleLevelCompleted());
+    }
+
     private IEnumerator HandleGameOver()
     {
-        yield return StartCoroutine(FruitManager.instance.ExplodeFruits()); // explode fruits
+        yield return StartCoroutine(FruitManager.instance.ExplodeFruits(GameState.Gameover)); // explode fruits
         SetGameState(GameState.Gameover);
+    }
+
+    private IEnumerator HandleLevelCompleted()
+    {
+        yield return StartCoroutine(FruitManager.instance.ExplodeFruits(GameState.LevelCompleted)); // explode fruits
+        SetGameState(GameState.LevelCompleted);
     }
 
     public void SetGameState(GameState gameState)
@@ -71,6 +83,14 @@ public class GameManager : MonoBehaviour
     public void SetGameoverState(GameState gameState)
     {
         if (gameState == GameState.Gameover)
+        {
+            AdsManager.instance.ShowInterstitialAd();
+        }
+    }
+
+    public void SetLevelCompletedState(GameState gameState)
+    {
+        if (gameState == GameState.LevelCompleted)
         {
             AdsManager.instance.ShowInterstitialAd();
         }
@@ -94,5 +114,10 @@ public class GameManager : MonoBehaviour
     public void SetGameOverState()
     {
         SetGameOver();
+    }
+
+    public void SetLevelCompletedState()
+    {
+        SetLevelCompleted();
     }
 }

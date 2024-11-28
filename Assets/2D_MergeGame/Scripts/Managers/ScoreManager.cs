@@ -115,6 +115,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public int GetCurrentScore()
+    {
+        return score;
+    }
+
+
     private void LoadData()
     {
         bestScore = PlayerPrefs.GetInt(bestScoreKey);

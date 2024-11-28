@@ -17,7 +17,7 @@ public class LocalizationManager : MonoBehaviour
         languageDropdown.onValueChanged.AddListener(OnLanguageChanged);
     }
 
-    private void OnLanguageChanged(int index)
+    public void OnLanguageChanged(int index)
     {
         // update selected language and save
         if (index == 0)
@@ -33,7 +33,7 @@ public class LocalizationManager : MonoBehaviour
 
     private void SetLanguage(string localeCode)
     {
-        //load locale setting from localization package
+        // Set the language asynchronously
         StartCoroutine(SetLocale(localeCode));
     }
 
@@ -45,6 +45,8 @@ public class LocalizationManager : MonoBehaviour
             if (locale.Identifier.Code == localeCode)
             {
                 LocalizationSettings.SelectedLocale = locale;
+                // Wait until the locale is applied properly
+                yield return null;
                 PlayerPrefs.SetString(LanguageKey, localeCode);
                 yield break;
             }
@@ -53,11 +55,12 @@ public class LocalizationManager : MonoBehaviour
 
     private void LoadLanguagePreference()
     {
-        //load registered language and set dropdown
+        // Load the saved language preference
         int savedIndex = PlayerPrefs.GetInt(LanguageIndexKey, 0);
-        languageDropdown.value = savedIndex;
         string savedLocaleCode = PlayerPrefs.GetString(LanguageKey, "en");
 
+        // Set the dropdown value and the locale
+        languageDropdown.value = savedIndex;
         SetLanguage(savedLocaleCode);
     }
 }

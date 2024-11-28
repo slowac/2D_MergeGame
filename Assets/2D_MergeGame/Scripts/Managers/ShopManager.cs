@@ -7,6 +7,8 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager instance;
+
     [Header("Elements")]
     [SerializeField] private SkinButton skinButtonPrefab;
     [SerializeField] private Transform skinButtonsParent;
@@ -27,11 +29,26 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private ScrollRect skinScrollView;  // ScrollRect
     [SerializeField] private RectTransform content;      // Content
 
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI recipeIngredients;
+    [SerializeField] private RectTransform rewardLimitPanel; // Panel for reward limit notification
+    private Vector2 rewardLimitPanelOpenedPosition;
+    private Vector2 rewardLimitPanelClosedPosition;
+
     [Header("Actions")]
     public static Action<SkinDataSO> onSkinSelected;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         unlockedStates = new bool[skinDataSOs.Length];
     }
 
@@ -39,14 +56,22 @@ public class ShopManager : MonoBehaviour
     {
         Initialize();
         LoadData();
+        DailyRewardLimitPanelInitialize();
 
         if (skinButtonsParent.childCount > 0)
         {
             SkinButtonClickedCallback(lastSelectedSkin, false); // select the first product and center it
         }
+
     }
 
-
+    void Update()
+    {
+        if (rewardLimitPanel == null)
+        {
+            Debug.LogError("RewardLimitPanel has been destroyed!");
+        }
+    }
 
     public void PurchaseButtonCallback()
     {
@@ -122,6 +147,29 @@ public class ShopManager : MonoBehaviour
 
         ManagePurhcaseButtonVisibility(skinButtonIndex);
         UpdateSkinLabel(skinButtonIndex);
+
+        // Recipe Ingredients'i güncelle
+        UpdateRecipeIngredients(skinButtonIndex);
+    }
+
+    private void UpdateRecipeIngredients(int skinButtonIndex)
+    {
+        // ingredients listesini alýyoruz
+        List<string> ingredients = skinDataSOs[skinButtonIndex].GetIngredients();
+
+        // Listeyi string formatýna çevirip metin objesine yazdýrýyoruz
+        if (ingredients != null && ingredients.Count > 0)
+        {
+            recipeIngredients.text = "";
+            foreach (string ingredient in ingredients)
+            {
+                recipeIngredients.text += ingredient + "\n";  // Liste elemanlarýný alt alta yazdýrýyoruz
+            }
+        }
+        else
+        {
+            recipeIngredients.text = "No ingredients available.";
+        }
     }
 
     private IEnumerator SmoothScroll(int skinButtonIndex)
@@ -164,6 +212,33 @@ public class ShopManager : MonoBehaviour
         return unlockedStates[skinButtonIndex];
     }
 
+    private void DailyRewardLimitPanelInitialize()
+    {
+        rewardLimitPanel.gameObject.SetActive(false);
+
+        rewardLimitPanelOpenedPosition = Vector2.zero;
+        rewardLimitPanelClosedPosition = new Vector2(0, Screen.height);
+
+        rewardLimitPanel.anchoredPosition = rewardLimitPanelClosedPosition;
+    }
+
+    public void ShowLimitReachedPanel()
+    {
+        rewardLimitPanel.gameObject.SetActive(true);
+
+        LeanTween.cancel(rewardLimitPanel);
+        LeanTween.move(rewardLimitPanel, rewardLimitPanelOpenedPosition, 0.5f).setEase(LeanTweenType.easeInOutSine);
+    }
+
+    public void CloseRewardLimitPanel()
+    {
+        LeanTween.cancel(rewardLimitPanel);
+        LeanTween.move(rewardLimitPanel, rewardLimitPanelClosedPosition, 0.5f).setEase(LeanTweenType.easeInOutSine);
+
+        LeanTween.delayedCall(0.5f, () => rewardLimitPanel.gameObject.SetActive(false));
+    }
+
+
     private void LoadData()
     {
         for (int i = 0; i < unlockedStates.Length; i++)
@@ -192,15 +267,17 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.SetInt(skinButtonKey + i, unlockedValue);
         }
     }
-
     private void LoadLastSelectedSkin()
     {
-        int lastSelectedSkinIndex = PlayerPrefs.GetInt(lastSelectedSkinKey);
+        int lastSelectedSkinIndex = PlayerPrefs.GetInt(lastSelectedSkinKey, 0);
         SkinButtonClickedCallback(lastSelectedSkinIndex, false);
+        Debug.Log("Last selected skin loaded: " + lastSelectedSkinIndex);
     }
 
     private void SaveLastSelectedSkin()
     {
         PlayerPrefs.SetInt(lastSelectedSkinKey, lastSelectedSkin);
+        PlayerPrefs.Save();
+        Debug.Log("Last selected skin saved: " + lastSelectedSkin);
     }
 }

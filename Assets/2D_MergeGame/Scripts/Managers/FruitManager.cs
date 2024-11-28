@@ -80,7 +80,7 @@ public class FruitManager : MonoBehaviour
         }
     }
 
-    public IEnumerator ExplodeFruits()
+    public IEnumerator ExplodeFruits(GameState endState)
     {
         isExploding = true; // Set to true when the explosion process starts
         
@@ -105,7 +105,7 @@ public class FruitManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        GameManager.instance.SetGameState(GameState.Gameover); // set GameState to GameOver
+        GameManager.instance.SetGameState(endState); // set GameState to GameOver
     }
 
     private void SkinSelectedCallback(SkinDataSO skinDataSO)

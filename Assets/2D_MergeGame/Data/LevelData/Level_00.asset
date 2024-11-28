@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09e97ce5e394ab40bbf05691c537748, type: 3}
   m_Name: Level_00
   m_EditorClassIdentifier: 
-  name: Level 1
-  price: 0
-  iconSprite: {fileID: 21300000, guid: 3850712d863ea184db0a204c819a292e, type: 3}
   levelPrefab: {fileID: 5597139007772411000, guid: ad7340a4bc887e14ead47b2202683c22, type: 3}
   requiredHighScore: 0
+  isTimed: 0
+  timeLimit: 0
+  targetScore: 0
+  rewardPrice: 0

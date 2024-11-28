@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject levelCompletedPanel;
     [SerializeField] private RectTransform settingsPanel;
     [SerializeField] private RectTransform shopPanel;
     [SerializeField] private GameObject mapPanel;
@@ -58,6 +59,10 @@ public class UIManager : MonoBehaviour
             case GameState.Gameover:
                 SetGameOver();
                 break;
+
+            case GameState.LevelCompleted:
+                SetLevelCompleted();
+                break;
         }
     }
 
@@ -67,6 +72,7 @@ public class UIManager : MonoBehaviour
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
         mapPanel.SetActive(false);
+        levelCompletedPanel.SetActive(false);
     }
 
     private void SetGame()
@@ -75,6 +81,7 @@ public class UIManager : MonoBehaviour
         menuPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         mapPanel.SetActive(false);
+        levelCompletedPanel.SetActive(false);
     }
 
     private void SetGameOver()
@@ -82,6 +89,15 @@ public class UIManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         menuPanel.SetActive(false);
         gamePanel.SetActive(false);
+        levelCompletedPanel.SetActive(false);
+    }
+
+    private void SetLevelCompleted()
+    {
+        gameOverPanel.SetActive(false);
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        levelCompletedPanel.SetActive(true);
     }
 
     public void LevelButtonCallback()
