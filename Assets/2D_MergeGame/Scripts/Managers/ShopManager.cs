@@ -278,7 +278,7 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
-    private void LoadLastSelectedSkin()
+    public void LoadLastSelectedSkin()
     {
         int lastSelectedSkinIndex = SaveSystem.Instance.ShopLastSelectedSkin;
         SkinButtonClickedCallback(lastSelectedSkinIndex, false);
