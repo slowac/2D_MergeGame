@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DropdownOptions : MonoBehaviour
 {
@@ -22,5 +23,7 @@ public class DropdownOptions : MonoBehaviour
         }
 
         _objects.AddOptions(flagList);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 }
