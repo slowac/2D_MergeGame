@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Level_02
   m_EditorClassIdentifier: 
   levelPrefab: {fileID: 5597139007772411000, guid: 711fbdde6b59e7048a474b6bdc04b52e, type: 3}
-  requiredHighScore: 3500
+  requiredHighScore: 2500
   isTimed: 1
   timeLimit: 30
   targetScore: 1500
   rewardPrice: 1000
+  LevelIndex: 2

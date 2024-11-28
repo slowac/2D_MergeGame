@@ -20,8 +20,6 @@ public class GameOverManager : MonoBehaviour
         {
             ManageGameOver();
         }
-
-        Debug.Log(timer);
     }
 
     private void ManageGameOver()

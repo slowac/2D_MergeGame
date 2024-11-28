@@ -17,9 +17,6 @@ public class ScoreManager : MonoBehaviour
     private int score;
     private int bestScore;
 
-    [Header("Data")]
-    private const string bestScoreKey = "bestScoreKey";
-
     private void Awake()
     {
         if (instance == null)
@@ -30,8 +27,6 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        LoadData();
 
         MergeManager.onMergeProcessed += MergeProcessedCallback;
 
@@ -47,6 +42,8 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        LoadData();
+
         UpdateScoreText();
         UpdateBestScoreText();
     }
@@ -123,11 +120,11 @@ public class ScoreManager : MonoBehaviour
 
     private void LoadData()
     {
-        bestScore = PlayerPrefs.GetInt(bestScoreKey);
+        bestScore = SaveSystem.Instance.BestScore;
     }
 
     private void SaveData()
     {
-        PlayerPrefs.SetInt(bestScoreKey, bestScore);
+        SaveSystem.Instance.BestScore = bestScore;
     }
 }

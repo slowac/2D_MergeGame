@@ -15,6 +15,8 @@ public class LevelDataSO : ScriptableObject
     [SerializeField] private int targetScore; // Target score against time
     [SerializeField] private int rewardPrice;
 
+    public int LevelIndex;
+
     public GameObject GetLevel()
     {
         return levelPrefab;

@@ -79,6 +79,8 @@ public class LevelMapManager : MonoBehaviour
         // Seviye prefabýný yükle
         Instantiate(levelDatas[buttonIndex].GetLevel(), transform);
 
+        SaveSystem.Instance.LastPlayedLevelIndex = levelDatas[buttonIndex].LevelIndex;
+
         // Zamanlý seviye kontrolü
         if (levelDatas[buttonIndex].IsTimed())
         {
@@ -220,9 +222,16 @@ public class LevelMapManager : MonoBehaviour
 
         for (int i = 0; i < levelDatas.Length; i++)
         {
-            if (levelDatas[i].GetRequiredHighScore() <= bestScore)
+            if ((SaveSystem.Instance.LastPlayedLevelIndex == i - 1 || SaveSystem.Instance.UnlockedLevels.Contains(i) || i == 0) && levelDatas[i].GetRequiredHighScore() <= bestScore)
             {
                 levelButtonParents[i].GetChild(0).GetComponent<LevelButton>().Enable();
+
+                Debug.Log("enable");
+
+                if(SaveSystem.Instance.UnlockedLevels.Contains(i) == false)
+                {
+                    SaveSystem.Instance.UnlockedLevels.Add(i);
+                }
             }
         }
     }

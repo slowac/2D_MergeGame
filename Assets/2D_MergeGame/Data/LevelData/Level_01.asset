@@ -18,3 +18,4 @@ MonoBehaviour:
   timeLimit: 60
   targetScore: 3500
   rewardPrice: 1000
+  LevelIndex: 1

@@ -12,6 +12,10 @@ public class SaveSystem
     public List<int> ShopSkinKeyValues = new List<int>();
     public int ShopLastSelectedSkin = 0;
 
+    public int LastPlayedLevelIndex;
+    public int BestScore = 0;
+    public List<int> UnlockedLevels = new List<int>();
+
     public int Coins = 0;
 
     public static void Save()
