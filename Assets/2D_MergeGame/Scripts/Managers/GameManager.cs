@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         }
 
         Application.targetFrameRate = 60;
+        SaveSystem.Load();
     }
 
     private void Start()
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         onGameStateChanged -= SetGameoverState;
 
+        SaveSystem.Save();
     }
 
     private void SetMenu()
