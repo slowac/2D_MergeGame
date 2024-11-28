@@ -2,13 +2,17 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary; 
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveSystem
 {
     public static SaveSystem Instance;
 
-    public int Coins;
+    public List<int> ShopSkinKeyValues = new List<int>();
+    public int ShopLastSelectedSkin = 0;
+
+    public int Coins = 0;
 
     public static void Save()
     {

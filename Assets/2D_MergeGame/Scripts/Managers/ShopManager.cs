@@ -19,8 +19,6 @@ public class ShopManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private SkinDataSO[] skinDataSOs;
     private bool[] unlockedStates;
-    private const string skinButtonKey = "SkinButton_";
-    private const string lastSelectedSkinKey = "LastSelectedSkin";
 
     [Header("Variables")]
     private int lastSelectedSkin;
@@ -243,7 +241,12 @@ public class ShopManager : MonoBehaviour
     {
         for (int i = 0; i < unlockedStates.Length; i++)
         {
-            int unlockedValue = PlayerPrefs.GetInt(skinButtonKey + i);
+            int unlockedValue = 0;
+
+            if (SaveSystem.Instance.ShopSkinKeyValues.Count > i)
+            {
+                unlockedValue = SaveSystem.Instance.ShopSkinKeyValues[i];
+            }
 
             if (i == 0)
             {
@@ -264,20 +267,28 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < unlockedStates.Length; i++)
         {
             int unlockedValue = unlockedStates[i] ? 1 : 0;
-            PlayerPrefs.SetInt(skinButtonKey + i, unlockedValue);
+
+            if (SaveSystem.Instance.ShopSkinKeyValues.Count <= i)
+            {
+                SaveSystem.Instance.ShopSkinKeyValues.Add(unlockedValue);
+            }
+            else
+            {
+                SaveSystem.Instance.ShopSkinKeyValues[i] = unlockedValue;
+            }
         }
     }
     private void LoadLastSelectedSkin()
     {
-        int lastSelectedSkinIndex = PlayerPrefs.GetInt(lastSelectedSkinKey, 0);
+        int lastSelectedSkinIndex = SaveSystem.Instance.ShopLastSelectedSkin;
         SkinButtonClickedCallback(lastSelectedSkinIndex, false);
         Debug.Log("Last selected skin loaded: " + lastSelectedSkinIndex);
     }
 
     private void SaveLastSelectedSkin()
     {
-        PlayerPrefs.SetInt(lastSelectedSkinKey, lastSelectedSkin);
-        PlayerPrefs.Save();
+        SaveSystem.Instance.ShopLastSelectedSkin = lastSelectedSkin;
+
         Debug.Log("Last selected skin saved: " + lastSelectedSkin);
     }
 }
