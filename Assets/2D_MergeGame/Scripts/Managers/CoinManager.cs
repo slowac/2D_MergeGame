@@ -10,7 +10,6 @@ public class CoinManager : MonoBehaviour
 
     [Header("Variables")]
     private int coins;
-    private const string coinsKey = "coins";
 
     [Header("Actions")]
     public static Action onCoinsUpdated;
@@ -82,11 +81,11 @@ public class CoinManager : MonoBehaviour
     
     private void LoadData()
     {
-        coins = PlayerPrefs.GetInt(coinsKey );
+        coins = SaveSystem.Instance.Coins;
     }
 
     private void SaveData()
     {
-        PlayerPrefs.SetInt(coinsKey, coins);
+        SaveSystem.Instance.Coins = coins;
     }
 }
